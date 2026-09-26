@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>壁画注胶针扫掠校核</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>壁画修复 · 细裂隙注胶长针扫掠校核</h1>
+    <p class="subtitle">
+      针身连续扫掠的<strong>带方向圆扇形</strong>与颜料保护圆精确求交；相交或<strong>相切均不安全</strong>。
+      可在画布拖动手柄，或在右侧录入数值。
+    </p>
+  </header>
+
+  <main class="layout">
+    <section class="canvas-wrap">
+      <canvas id="stage" width="820" height="720" aria-label="针与保护圆画布"></canvas>
+      <div class="hint">
+        拖动：针支点（实心方块）／绿柄=起始针尖、红柄=终止针尖（同时改针长）／圆心／圆缘白点（改半径）。
+        数学坐标：角度 0° 朝右，逆时针为正。
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="verdict" id="verdict">尚未校核</div>
+      <div id="conflictBox" class="conflict hidden"></div>
+
+      <div class="block-head">
+        <h2>针（2~5 根）</h2>
+        <button type="button" id="addNeedle" class="mini">＋ 添加针</button>
+      </div>
+      <div id="needleList"></div>
+
+      <div class="block-head">
+        <h2>颜料保护圆（1~6 个）</h2>
+        <button type="button" id="addCircle" class="mini">＋ 添加保护圆</button>
+      </div>
+      <div id="circleList"></div>
+
+      <div class="actions">
+        <button type="button" id="verifyBtn" class="primary">校 核</button>
+        <button type="button" id="resetBtn">恢复示例</button>
+      </div>
+      <div id="errorBox" class="errors hidden"></div>
+    </aside>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

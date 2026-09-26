@@ -1,0 +1,16 @@
+{
+  "name": "mural-needle-sweep-verify",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "壁画修复细裂隙注胶：长针旋转扫掠区与颜料保护圆相交/相切校核（纯前端）",
+  "scripts": {
+    "test": "node --test web/geom/sweep.test.mjs",
+    "build": "node scripts/build.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "verify": "npm test && npm run build && npm run smoke"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

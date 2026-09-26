@@ -1,0 +1,27 @@
+services:
+  # 静态网页服务：宿主机端口由 WEB_PORT 配置（默认 8080）
+  web:
+    build:
+      context: .
+      target: web
+    image: mural-needle-web:latest
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 3s
+
+  # 一次性校核服务：单元测试 → 静态构建 → 注胶扫掠模块烟测，
+  # 全部通过后自行退出（退出码 0）；任一失败以非零退出码报告。
+  # 用法：docker compose build verify && docker compose up --exit-code-from verify verify
+  verify:
+    build:
+      context: .
+      target: builder
+    image: mural-needle-verify:latest
+    command: ["npm", "run", "verify"]
+    restart: "no"
